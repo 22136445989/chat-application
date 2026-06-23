@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './MessageInput.css'
 
 interface MessageInputProps {
   onSend: (content: string) => void
@@ -15,17 +16,14 @@ export function MessageInput({ onSend }: MessageInputProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', padding: '1rem', borderTop: '1px solid #ddd' }}>
+    <form onSubmit={handleSubmit} className="message-input">
       <input
         type="text"
         placeholder="Введите сообщение..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        style={{ flex: 1, padding: '0.5rem' }}
       />
-      <button type="submit" style={{ marginLeft: '0.5rem', padding: '0.5rem 1rem' }}>
-        Отправить
-      </button>
+      <button type="submit">Отправить</button>
     </form>
   )
 }

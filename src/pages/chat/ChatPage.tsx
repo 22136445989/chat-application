@@ -5,6 +5,7 @@ import { MessageList } from '../../features/messages/MessageList'
 import { MessageInput } from '../../features/messages/MessageInput'
 import { Message } from '../../entities/message/model'
 import { getMessages, sendMessage, subscribeToMessages } from '../../entities/message/api'
+import './ChatPage.css'
 
 export function ChatPage() {
   const { user, signOut } = useAuth()
@@ -41,29 +42,20 @@ export function ChatPage() {
   }
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <header
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '1rem',
-          borderBottom: '1px solid #ddd',
-          background: '#fff',
-        }}
-      >
-        <h1 style={{ margin: 0 }}>Chat</h1>
-        <div>
-          <span style={{ marginRight: '1rem' }}>{user?.email}</span>
+    <div className="chat-page">
+      <header className="chat-header">
+        <h1>Chat</h1>
+        <div className="chat-user">
+          <span>{user?.email}</span>
           <button onClick={() => signOut()}>Выйти</button>
         </div>
       </header>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div className="chat-body">
         <RoomList selectedRoomId={selectedRoomId} onSelectRoom={setSelectedRoomId} />
 
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          {error && <p style={{ color: 'red', padding: '0 1rem' }}>{error}</p>}
+        <div className="chat-messages">
+          {error && <p className="error">{error}</p>}
 
           {selectedRoomId ? (
             <>
@@ -71,7 +63,7 @@ export function ChatPage() {
               <MessageInput onSend={handleSendMessage} />
             </>
           ) : (
-            <div style={{ padding: '2rem', color: '#888' }}>Выберите комнату, чтобы начать общение</div>
+            <div className="empty">Выберите комнату, чтобы начать общение</div>
           )}
         </div>
       </div>

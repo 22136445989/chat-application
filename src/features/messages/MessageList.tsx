@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Message } from '../../entities/message/model'
+import './MessageList.css'
 
 interface MessageListProps {
   messages: Message[]
@@ -12,15 +13,21 @@ export function MessageList({ messages }: MessageListProps) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  if (messages.length === 0) {
+    return <div className="empty">Сообщений пока нет. Напишите первое!</div>
+  }
+
   return (
-    <div style={{ flex: 1, overflowY: 'auto', padding: '1rem' }}>
+    <div className="message-list">
       {messages.map((message) => (
-        <div key={message.id} style={{ marginBottom: '1rem' }}>
-          <strong>{message.user?.username ?? 'Неизвестный'}</strong>
-          <span style={{ color: '#888', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
-            {new Date(message.created_at).toLocaleTimeString()}
-          </span>
-          <p style={{ margin: '0.25rem 0 0' }}>{message.content}</p>
+        <div key={message.id} className="message">
+          <div className="message-header">
+            <strong>{message.user?.username ?? 'Неизвестный'}</strong>
+            <span className="message-time">
+              {new Date(message.created_at).toLocaleTimeString()}
+            </span>
+          </div>
+          <p className="message-content">{message.content}</p>
         </div>
       ))}
       <div ref={bottomRef} />

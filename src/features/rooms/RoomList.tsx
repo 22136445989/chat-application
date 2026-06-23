@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Room } from '../../entities/room/model'
 import { getRooms, createRoom } from '../../entities/room/api'
+import './RoomList.css'
 
 interface RoomListProps {
   selectedRoomId: string | null
@@ -11,11 +12,14 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
   const [rooms, setRooms] = useState<Room[]>([])
   const [newRoomName, setNewRoomName] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     getRooms()
       .then(setRooms)
       .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
   }, [])
 
   const handleCreateRoom = async (e: React.FormEvent) => {
@@ -32,33 +36,29 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
     }
   }
 
+  if (loading) {
+    return <div className="room-list loader">Загрузка комнат...</div>
+  }
+
   return (
-    <div style={{ width: '250px', borderRight: '1px solid #ddd', padding: '1rem' }}>
+    <div className="room-list">
       <h2>Комнаты</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleCreateRoom} style={{ marginBottom: '1rem' }}>
+      {error && <p className="error">{error}</p>}
+      <form onSubmit={handleCreateRoom} className="room-form">
         <input
           type="text"
           placeholder="Новая комната"
           value={newRoomName}
           onChange={(e) => setNewRoomName(e.target.value)}
-          style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
         />
-        <button type="submit" style={{ width: '100%' }}>
-          Создать
-        </button>
+        <button type="submit">Создать</button>
       </form>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <ul className="room-items">
         {rooms.map((room) => (
           <li
             key={room.id}
             onClick={() => onSelectRoom(room.id)}
-            style={{
-              padding: '0.5rem',
-              cursor: 'pointer',
-              background: room.id === selectedRoomId ? '#e0e0e0' : 'transparent',
-              borderRadius: '4px',
-            }}
+            className={room.id === selectedRoomId ? 'room-item active' : 'room-item'}
           >
             {room.name}
           </li>
