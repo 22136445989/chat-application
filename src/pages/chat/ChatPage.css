@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: #36393f;
 }
 
 .chat-header {
@@ -10,14 +11,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  background: #fff;
+  border-bottom: 1px solid #202225;
+  background: #2f3136;
+  color: #fff;
   flex-shrink: 0;
 }
 
 .chat-header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .chat-user {
@@ -25,6 +27,10 @@
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+}
+
+.chat-user span {
+  color: #b9bbbe;
 }
 
 .chat-body {
@@ -40,5 +46,5 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
-  background: #fafafa;
+  background: #36393f;
 }

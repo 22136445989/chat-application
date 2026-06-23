@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Room } from '../../entities/room/model'
 import { getRooms, createRoom, deleteRoom } from '../../entities/room/api'
+import { Modal } from '../../shared/ui/Modal'
 import './RoomList.css'
 
 interface RoomListProps {
@@ -13,6 +14,7 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
   const [newRoomName, setNewRoomName] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
+  const [roomToDelete, setRoomToDelete] = useState<Room | null>(null)
 
   useEffect(() => {
     setLoading(true)
@@ -36,18 +38,19 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
     }
   }
 
-  const handleDeleteRoom = async (e: React.MouseEvent, roomId: string) => {
-    e.stopPropagation()
-    if (!confirm('Удалить комнату?')) return
+  const handleDeleteRoom = async () => {
+    if (!roomToDelete) return
 
     try {
-      await deleteRoom(roomId)
-      setRooms((prev) => prev.filter((room) => room.id !== roomId))
-      if (selectedRoomId === roomId) {
+      await deleteRoom(roomToDelete.id)
+      setRooms((prev) => prev.filter((room) => room.id !== roomToDelete.id))
+      if (selectedRoomId === roomToDelete.id) {
         onSelectRoom(null)
       }
+      setRoomToDelete(null)
     } catch (err: any) {
       setError(err.message)
+      setRoomToDelete(null)
     }
   }
 
@@ -78,7 +81,10 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
             <span className="room-name">{room.name}</span>
             <button
               className="room-delete"
-              onClick={(e) => handleDeleteRoom(e, room.id)}
+              onClick={(e) => {
+                e.stopPropagation()
+                setRoomToDelete(room)
+              }}
               title="Удалить комнату"
             >
               ×
@@ -86,6 +92,17 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
           </li>
         ))}
       </ul>
+
+      <Modal
+        isOpen={roomToDelete !== null}
+        title="Удаление комнаты"
+        onConfirm={handleDeleteRoom}
+        onCancel={() => setRoomToDelete(null)}
+        confirmText="Удалить"
+        cancelText="Отмена"
+      >
+        Вы уверены, что хотите удалить комнату «{roomToDelete?.name}»? Все сообщения в ней также будут удалены.
+      </Modal>
     </div>
   )
 }

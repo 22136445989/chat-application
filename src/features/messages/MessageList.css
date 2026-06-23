@@ -2,16 +2,16 @@
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
-  background: #fafafa;
+  background: #36393f;
   min-height: 0;
 }
 
 .message {
   margin-bottom: 1rem;
   padding: 0.75rem;
-  background: #fff;
+  background: #40444b;
   border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #dcddde;
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -24,8 +24,12 @@
   flex-wrap: wrap;
 }
 
+.message-header strong {
+  color: #fff;
+}
+
 .message-time {
-  color: #888;
+  color: #72767d;
   font-size: 0.8rem;
 }
 
@@ -33,4 +37,5 @@
   margin: 0;
   word-break: break-word;
   overflow-wrap: break-word;
+  line-height: 1.4;
 }

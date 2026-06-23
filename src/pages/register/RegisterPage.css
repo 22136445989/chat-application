@@ -4,19 +4,22 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background: #36393f;
 }
 
 .auth-card {
   width: 100%;
   max-width: 400px;
-  background: #fff;
+  background: #2f3136;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #dcddde;
 }
 
 .auth-card h1 {
   margin-top: 0;
+  color: #fff;
 }
 
 .form-group {
@@ -26,20 +29,32 @@
 .form-group label {
   display: block;
   margin-bottom: 0.25rem;
+  color: #b9bbbe;
+  font-size: 0.9rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.6rem;
+  background: #40444b;
+  color: #dcddde;
+  border: 1px solid #202225;
 }
 
 .auth-button {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
+  background: #5865f2;
+  margin-top: 0.5rem;
+}
+
+.auth-button:hover {
+  background: #4752c4;
 }
 
 .auth-link {
   margin-top: 1rem;
   text-align: center;
+  color: #72767d;
 }

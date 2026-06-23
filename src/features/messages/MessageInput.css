@@ -1,19 +1,30 @@
 .message-input {
   display: flex;
   padding: 1rem;
-  border-top: 1px solid #ddd;
-  background: #fff;
-  gap: 0.5rem;
+  border-top: 1px solid #202225;
+  background: #36393f;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
 .message-input input {
   flex: 1;
   min-width: 0;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #40444b;
+  color: #dcddde;
+}
+
+.message-input input::placeholder {
+  color: #72767d;
 }
 
 .message-input button {
   padding: 0.75rem 1.5rem;
   flex-shrink: 0;
+  background: #5865f2;
+}
+
+.message-input button:hover {
+  background: #4752c4;
 }

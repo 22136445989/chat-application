@@ -1,9 +1,9 @@
 .room-list {
   width: 260px;
   min-width: 220px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #202225;
   padding: 1rem;
-  background: #fff;
+  background: #2f3136;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -11,6 +11,8 @@
 
 .room-list h2 {
   margin-top: 0;
+  color: #fff;
+  font-size: 1.1rem;
 }
 
 .room-form {
@@ -22,12 +24,18 @@
 .room-form input {
   flex: 1;
   min-width: 0;
-  padding: 0.5rem;
+  background: #40444b;
+  color: #dcddde;
 }
 
 .room-form button {
   padding: 0.5rem 0.75rem;
   flex-shrink: 0;
+  background: #5865f2;
+}
+
+.room-form button:hover {
+  background: #4752c4;
 }
 
 .room-items {
@@ -42,34 +50,37 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.6rem 0.75rem;
   cursor: pointer;
   border-radius: 4px;
   margin-bottom: 0.25rem;
+  color: #96989d;
 }
 
 .room-item:hover {
-  background: #f0f0f0;
+  background: #34373c;
+  color: #dcddde;
 }
 
 .room-item.active {
-  background: #e0e7ff;
-  font-weight: 600;
+  background: #393c43;
+  color: #fff;
 }
 
 .room-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1;
 }
 
 .room-delete {
-  background: #dc2626;
+  background: #ed4245;
   color: #fff;
   border: none;
   border-radius: 4px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,8 +88,15 @@
   flex-shrink: 0;
   font-size: 1rem;
   line-height: 1;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.room-item:hover .room-delete {
+  opacity: 1;
 }
 
 .room-delete:hover {
-  background: #b91d1d;
+  background: #c03537;
 }
