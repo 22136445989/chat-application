@@ -36,7 +36,7 @@ npm run dev
 
 ## Деплой
 
-[https://chat-application.vercel.app](https://chat-application.vercel.app)
+[https://chat-application-sooty-three.vercel.app/](https://chat-application-sooty-three.vercel.app/)
 
 ### Как задеплоить
 

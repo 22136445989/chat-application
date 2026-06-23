@@ -3,7 +3,7 @@
 ## 1. Выбранный проект
 
 - **Название:** Real-time Chat
-- **Ссылка из каталога:** *(вставить ссылку на каталог пет-проектов)*
+- **Ссылка из каталога:** https://www.freecodecamp.org/news/how-to-build-a-chat-application-using-react-redux-redux-saga-and-web-sockets-47423e4bc21a
 - **Описание:** Веб-приложение для обмена сообщениями в реальном времени. Пользователи могут регистрироваться, входить в систему, создавать комнаты и обмениваться сообщениями.
 - **Что реализовано:**
   - Регистрация и вход через Supabase Auth
@@ -17,7 +17,7 @@
 | Параметр | Значение |
 |----------|----------|
 | GitHub-репозиторий | https://github.com/22136445989/chat-application |
-| Деплой | https://chat-application.vercel.app |
+| Деплой | https://chat-application-sooty-three.vercel.app/ |
 | Frontend | React, TypeScript, Vite |
 | Backend / БД | Supabase (Auth, Postgres, Realtime) |
 | Хостинг | Vercel |
@@ -86,7 +86,7 @@ rooms ||--o{ messages : room_id
 
 ## 5. Демонстрация работы
 
-*(Здесь вставить GIF или ссылку на видео до 2 минут)*
+*(GIF демонстрация работы приложения: вход, создание комнаты, отправка сообщения)*
 
 Сценарий демонстрации:
 1. Открыть деплой
@@ -97,6 +97,7 @@ rooms ||--o{ messages : room_id
 
 ## 6. Качество кода
 
+[![Maintainability](https://qlty.sh/gh/22136445989/projects/chat-application/maintainability.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
 [![Maintainability](https://qlty.sh/gh/22136445989/projects/chat-application/maintainability.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
 [![Code Coverage](https://qlty.sh/gh/22136445989/projects/chat-application/coverage.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
 
