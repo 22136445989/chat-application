@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
     "react": "^18.3.1",
