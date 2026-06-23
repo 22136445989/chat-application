@@ -7,6 +7,13 @@ import { Message } from '../../entities/message/model'
 import { getMessages, sendMessage, subscribeToMessages } from '../../entities/message/api'
 import './ChatPage.css'
 
+function getSendErrorMessage(errorMessage: string): string {
+  if (errorMessage.includes('foreign key constraint') || errorMessage.includes('messages_room_id_fkey')) {
+    return 'Эта комната была удалена. Перезагрузите страницу.'
+  }
+  return errorMessage
+}
+
 export function ChatPage() {
   const { user, signOut } = useAuth()
   const [selectedRoomId, setSelectedRoomId] = useState<string | null>(null)
@@ -37,7 +44,7 @@ export function ChatPage() {
     try {
       await sendMessage(selectedRoomId, user.id, content)
     } catch (err: any) {
-      setError(err.message)
+      setError(getSendErrorMessage(err.message))
     }
   }
 
@@ -55,7 +62,11 @@ export function ChatPage() {
         <RoomList selectedRoomId={selectedRoomId} onSelectRoom={setSelectedRoomId} />
 
         <div className="chat-messages">
-          {error && <p className="error">{error}</p>}
+          {error && (
+            <div className="chat-error">
+              <p>{error}</p>
+            </div>
+          )}
 
           {selectedRoomId ? (
             <>

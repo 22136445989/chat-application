@@ -48,3 +48,16 @@
   min-height: 0;
   background: #36393f;
 }
+
+.chat-error {
+  background: #ed4245;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.chat-error p {
+  margin: 0;
+}

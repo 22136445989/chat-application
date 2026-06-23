@@ -26,26 +26,3 @@ export async function deleteRoom(roomId: string): Promise<void> {
   const { error } = await supabase.from('rooms').delete().eq('id', roomId)
   if (error) throw error
 }
-
-export function subscribeToRooms(callback: (change: { event: 'INSERT' | 'UPDATE' | 'DELETE'; room: Room }) => void) {
-  const channel = supabase
-    .channel('rooms-changes')
-    .on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'rooms',
-      },
-      (payload) => {
-        const room = (payload.new as Room) ?? (payload.old as Room)
-        const event = payload.eventType as 'INSERT' | 'UPDATE' | 'DELETE'
-        callback({ event, room })
-      }
-    )
-    .subscribe()
-
-  return () => {
-    supabase.removeChannel(channel)
-  }
-}

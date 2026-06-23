@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Room } from '../../entities/room/model'
-import { getRooms, createRoom, deleteRoom, subscribeToRooms } from '../../entities/room/api'
+import { getRooms, createRoom, deleteRoom } from '../../entities/room/api'
 import { Modal } from '../../shared/ui/Modal'
 import './RoomList.css'
 
@@ -24,35 +24,13 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
       .finally(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    const unsubscribe = subscribeToRooms((change) => {
-      if (change.event === 'INSERT') {
-        setRooms((prev) => [change.room, ...prev])
-      }
-
-      if (change.event === 'UPDATE') {
-        setRooms((prev) =>
-          prev.map((room) => (room.id === change.room.id ? change.room : room))
-        )
-      }
-
-      if (change.event === 'DELETE') {
-        setRooms((prev) => prev.filter((room) => room.id !== change.room.id))
-        if (selectedRoomId === change.room.id) {
-          onSelectRoom(null)
-        }
-      }
-    })
-
-    return () => unsubscribe()
-  }, [selectedRoomId, onSelectRoom])
-
   const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!newRoomName.trim()) return
 
     try {
       const room = await createRoom(newRoomName.trim())
+      setRooms((prev) => [room, ...prev])
       setNewRoomName('')
       onSelectRoom(room.id)
     } catch (err: any) {
@@ -65,6 +43,10 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
 
     try {
       await deleteRoom(roomToDelete.id)
+      setRooms((prev) => prev.filter((room) => room.id !== roomToDelete.id))
+      if (selectedRoomId === roomToDelete.id) {
+        onSelectRoom(null)
+      }
       setRoomToDelete(null)
     } catch (err: any) {
       setError(err.message)
