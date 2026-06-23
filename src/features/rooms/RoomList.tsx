@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Room } from '../../entities/room/model'
-import { getRooms, createRoom } from '../../entities/room/api'
+import { getRooms, createRoom, deleteRoom } from '../../entities/room/api'
 import './RoomList.css'
 
 interface RoomListProps {
   selectedRoomId: string | null
-  onSelectRoom: (roomId: string) => void
+  onSelectRoom: (roomId: string | null) => void
 }
 
 export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
@@ -36,6 +36,21 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
     }
   }
 
+  const handleDeleteRoom = async (e: React.MouseEvent, roomId: string) => {
+    e.stopPropagation()
+    if (!confirm('Удалить комнату?')) return
+
+    try {
+      await deleteRoom(roomId)
+      setRooms((prev) => prev.filter((room) => room.id !== roomId))
+      if (selectedRoomId === roomId) {
+        onSelectRoom(null)
+      }
+    } catch (err: any) {
+      setError(err.message)
+    }
+  }
+
   if (loading) {
     return <div className="room-list loader">Загрузка комнат...</div>
   }
@@ -60,7 +75,14 @@ export function RoomList({ selectedRoomId, onSelectRoom }: RoomListProps) {
             onClick={() => onSelectRoom(room.id)}
             className={room.id === selectedRoomId ? 'room-item active' : 'room-item'}
           >
-            {room.name}
+            <span className="room-name">{room.name}</span>
+            <button
+              className="room-delete"
+              onClick={(e) => handleDeleteRoom(e, room.id)}
+              title="Удалить комнату"
+            >
+              ×
+            </button>
           </li>
         ))}
       </ul>

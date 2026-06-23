@@ -21,3 +21,8 @@ export async function createRoom(name: string): Promise<Room> {
   if (error) throw error
   return data
 }
+
+export async function deleteRoom(roomId: string): Promise<void> {
+  const { error } = await supabase.from('rooms').delete().eq('id', roomId)
+  if (error) throw error
+}
