@@ -24,9 +24,25 @@ npm run dev
 3. Откройте SQL Editor и выполните скрипт из `supabase/migrations/001_initial_schema.sql`.
 4. Включите Realtime для таблицы `messages` в разделе Database → Realtime.
 
+## Тестовые данные
+
+Для проверки авторизации можно использовать тестовый аккаунт:
+
+- **Email:** `test@example.com`
+- **Password:** `test1234`
+
+Или зарегистрировать нового пользователя на странице регистрации.
+
 ## Деплой
 
 [https://chat-application.vercel.app](https://chat-application.vercel.app)
+
+### Как задеплоить
+
+1. Запушьте код в GitHub-репозиторий.
+2. Импортируйте проект на [vercel.com](https://vercel.com).
+3. Добавьте переменные окружения: `VITE_SUPABASE_URL` и `VITE_SUPABASE_ANON_KEY`.
+4. Нажмите Deploy.
 
 ## Качество кода
 
