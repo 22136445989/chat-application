@@ -21,7 +21,7 @@
 | Frontend | React, TypeScript, Vite |
 | Backend / БД | Supabase (Auth, Postgres, Realtime) |
 | Хостинг | Vercel |
-| Тестовый аккаунт | test@example.com / test1234 |
+| Тестовый аккаунт | viyimot361@afterdo.com / 123456 |
 
 ## 3. Архитектура
 

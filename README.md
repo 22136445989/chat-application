@@ -28,8 +28,9 @@ npm run dev
 
 Для проверки авторизации можно использовать тестовый аккаунт:
 
-- **Email:** `test@example.com`
-- **Password:** `test1234`
+- **Username:** `Test`
+- **Email:** `viyimot361@afterdo.com`
+- **Password:** `123456`
 
 Или зарегистрировать нового пользователя на странице регистрации.
 
@@ -46,4 +47,4 @@ npm run dev
 
 ## Качество кода
 
-[![Code Climate](https://codeclimate.com/github/22136445989/chat-application/badges/gpa.svg)](https://codeclimate.com/github/22136445989/chat-application)
+Для оценки 4/5 проект можно подключить к [Code Climate](https://codeclimate.com).
