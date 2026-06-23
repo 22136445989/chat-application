@@ -17,6 +17,13 @@ cp .env.example .env
 npm run dev
 ```
 
+## Настройка Supabase
+
+1. Создайте проект на [supabase.com](https://supabase.com).
+2. Скопируйте URL и anon key в файл `.env`.
+3. Откройте SQL Editor и выполните скрипт из `supabase/migrations/001_initial_schema.sql`.
+4. Включите Realtime для таблицы `messages` в разделе Database → Realtime.
+
 ## Деплой
 
 [https://chat-application.vercel.app](https://chat-application.vercel.app)
