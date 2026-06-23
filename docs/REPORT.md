@@ -97,9 +97,8 @@ rooms ||--o{ messages : room_id
 
 ## 6. Качество кода
 
-[![Code Climate](https://codeclimate.com/github/22136445989/chat-application/badges/gpa.svg)](https://codeclimate.com/github/22136445989/chat-application)
-
-Оценка Code Climate: *(вставить A/B после подключения)*
+[![Maintainability](https://qlty.sh/gh/22136445989/projects/chat-application/maintainability.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
+[![Code Coverage](https://qlty.sh/gh/22136445989/projects/chat-application/coverage.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
 
 ## 7. Вывод по практике
 

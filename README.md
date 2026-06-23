@@ -47,4 +47,5 @@ npm run dev
 
 ## Качество кода
 
-Для оценки 4/5 проект можно подключить к [Code Climate](https://codeclimate.com).
+[![Maintainability](https://qlty.sh/gh/22136445989/projects/chat-application/maintainability.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
+[![Code Coverage](https://qlty.sh/gh/22136445989/projects/chat-application/coverage.svg)](https://qlty.sh/gh/22136445989/projects/chat-application)
